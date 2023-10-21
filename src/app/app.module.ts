@@ -20,6 +20,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddTaskComponent } from './components/todos/add-task/add-task.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
     MyTodosComponent,
     AddTaskComponent,
     ForgetPasswordComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
