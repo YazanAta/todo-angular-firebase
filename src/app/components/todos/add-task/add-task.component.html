@@ -1,0 +1,45 @@
+<!-- The Modal -->
+<div class="modal" id="myModal" #modal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Modal Heading</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"></button>
+            </div>
+
+            <!-- Modal body -->
+            <form #f="ngForm" (ngSubmit)="addTask(f)">
+                <div class="modal-body">
+                    
+                    <input ngModel type="text" #name="ngModel" name="title" class="form-control" placeholder="Task Title" required>
+
+                    <div class="text-center m-3">
+                        <span>Priority:</span>
+                        <div class="form-check form-check-inline">
+                            <input ngModel #name="ngModel" name="priority" value="High" class="form-check-input" type="radio" id="inlineRadio1">
+                            <label class="form-check-label" for="inlineRadio1">High</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input ngModel #name="ngModel" name="priority" value="Medium" class="form-check-input" type="radio" id="inlineRadio2">
+                            <label class="form-check-label" for="inlineRadio2">Medium</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input ngModel #name="ngModel" name="priority" value="Low" class="form-check-input" type="radio" id="inlineRadio3">
+                            <label class="form-check-label" for="inlineRadio3">Low</label>
+                        </div>
+                    </div>
+
+                    <input ngModel type="text" #name="ngModel" name="notes" class="form-control" placeholder="Notes" required>
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-bs-dismiss="modal">Add Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
