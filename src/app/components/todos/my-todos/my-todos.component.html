@@ -1,6 +1,6 @@
-<section style="background-color: #eee;">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
+<section style="background-color: #eee; min-height: calc(100vh - 65px)">
+    <div class="container py-5">
+        <div class="row d-flex justify-content-center align-items-center">
         <div class="col-md-12 col-xl-10">
             <div class="card">
             <div class="card-header p-3">
@@ -44,5 +44,7 @@
         </div>
         </div>
     </div>
+    <!-- Add overlay element here -->
+    <div class="modal-overlay" *ngIf="isModalOpen"></div>
 </section>
-<app-add-task></app-add-task>
+<app-add-task (onModalClose)="closeModal()"></app-add-task>

@@ -11,9 +11,11 @@ export class AddTaskComponent {
   constructor(private ts: TaskService){}
 
   @ViewChild('modal') modal: ElementRef
+  @Output() onModalClose = new EventEmitter<boolean>();
 
   closeModal(){
     this.modal.nativeElement.style.display = 'none'
+    this.onModalClose.emit(false)
   }
 
   addTask(data: NgForm){

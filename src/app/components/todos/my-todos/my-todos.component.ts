@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faL, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { Task } from 'src/app/interfaces/task.interface';
@@ -22,7 +22,7 @@ export class MyTodosComponent implements OnInit{
   faXmark = faXmark;
   //-----------
 
-  popup : boolean = true;
+  isModalOpen : boolean = false;
 
   getColorClass(content: string) {
     switch (content) {
@@ -41,6 +41,12 @@ export class MyTodosComponent implements OnInit{
 
   openModal(){
     this.childComponent.modal.nativeElement.style.display = 'block'
+    this.isModalOpen = true;
+  }
+
+  closeModal(){
+    this.childComponent.closeModal()
+    this.isModalOpen = false
   }
 
   todos: Task[] = []
