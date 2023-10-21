@@ -1,0 +1,42 @@
+
+            <!-- <div class="alert alert-danger" *ngIf="email.touched && email.errors?.required">Email is Required</div>
+            <div class="alert alert-danger" *ngIf="email.touched && email.errors?.email">email format error</div>-->
+<div class="container row m-auto mt-4">
+    <form #f="ngForm" class="col-5 m-auto">
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+          <input ngModel #email="ngModel" type="email" name="email" id="form2Example1" class="form-control" required email />
+          <label class="form-label" for="form2Example1">Email address</label>
+          <div class="alert alert-danger" *ngIf="email.touched && email.errors?.['email']">Email format error</div>
+        </div>
+      
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+          <input ngModel #password="ngModel" type="password" name="password" id="form2Example2" class="form-control" required minlength="6"/>
+          <label class="form-label" for="form2Example2">Password</label>
+        </div>
+      
+        <!-- 2 column grid layout for inline styling -->
+        <div class="row mb-4">
+          <div class="col d-flex justify-content-center">
+                    <!-- Submit button -->
+            <button type="button" class="btn btn-primary btn-block mb-4" (click)="login(f)">Sign in</button>
+          </div>
+      
+          <div class="col">
+            <!-- Simple link -->
+            <a routerLink="forget-password">Forgot password?</a>
+          </div>
+        </div>
+      
+        <!-- Register buttons -->
+        <div class="text-center">
+          <p>Not a member? <a routerLink="/signup">Register</a></p>
+          <p>or sign up with:</p>
+      
+          <button type="button" class="btn btn-link btn-floating mx-1">
+            <img src="../../../assets/google.svg" alt="">
+          </button>
+        </div>
+    </form>
+</div>
