@@ -1,6 +1,6 @@
 <section style="background-color: #eee;">
     <div class="container h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100 p-3">
         <div class="col-lg-12 col-xl-11">
           <div class="card text-black" style="border-radius: 25px;">
             <div class="card-body p-md-5">
@@ -9,53 +9,66 @@
   
                   <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
   
-                  <form class="mx-1 mx-md-4" #f="ngForm" (ngSubmit)="signup(f)">
+                  <form class="mx-1 mx-md-4" autocomplete="on " [formGroup]="userForm" (ngSubmit)="signup(userForm)">
   
-                    <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="d-flex flex-row align-items-center mb-3">
                       <div class="form-outline flex-fill mb-0">
-                        <input ngModel #name="ngModel" name="name" type="text" id="form3Example1c" class="form-control" required/>
-                        <label class="form-label" for="form3Example1c">Your Name</label>
+                        <input name="name" type="text" placeholder="Your Name" class="form-control" formControlName="name" [ngClass]="{'is-invalid': userForm.get('name').errors?.['required'] && userForm.get('name').touched}"/>
                       </div>
                     </div>
-                    <div class="alert alert-danger" *ngIf="name.invalid && name.touched">Name is Required</div>
+                    <div class="alert alert-danger" *ngIf="userForm.get('name').errors?.['required'] && userForm.get('name').touched">
+                      Name is required
+                    </div>   
 
-                    <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="d-flex flex-row align-items-center mb-3">
                         <div class="form-outline flex-fill mb-0">
-                          <input ngModel #address="ngModel" name="address" type="text" id="form3Example4cd" class="form-control" required/>
-                          <label class="form-label" for="form3Example4cd">Address</label>
+                          <input name="address" type="text" placeholder="Address" class="form-control" formControlName="address" [ngClass]="{'is-invalid': userForm.get('address').errors && userForm.get('address').touched}"/>                        
                         </div>
                     </div>
-                    <div class="alert alert-danger" *ngIf="address.invalid && address.touched">address is Required</div>
+                    <div class="alert alert-danger" *ngIf="userForm.get('address').errors?.['required'] && userForm.get('address').touched">
+                      Address is required
+                    </div>   
   
-                    <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="d-flex flex-row align-items-center mb-3">
                       <div class="form-outline flex-fill mb-0">
-                        <input ngModel #email="ngModel" name="email" type="email" id="form3Example3c" class="form-control" required email/>
-                        <label class="form-label" for="form3Example3c">Your Email</label>
+                        <input name="email" type="email" placeholder="Your Email" class="form-control" formControlName="email" [ngClass]="{'is-invalid': userForm.get('email').errors && userForm.get('email').touched}"/>
                       </div>
                     </div>
-                    <div class="alert alert-danger" *ngIf="email.touched && email.errors?.['required']">Email is Required</div>
-                    <div class="alert alert-danger" *ngIf="email.touched && email.errors?.['email']">email format error</div>
+                    <div class="alert alert-danger" *ngIf="userForm.get('email').errors?.['required'] && userForm.get('email').touched">
+                      Email is Required
+                    </div>  
+                    <div class="alert alert-danger" *ngIf="userForm.get('email').errors?.['email'] && userForm.get('email').touched">
+                      Email must be a valid email address
+                    </div>      
   
-                    <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="d-flex flex-row align-items-center mb-3">
                       <div class="form-outline flex-fill mb-0">
-                        <input ngModel #password="ngModel" name="password" type="password" id="form3Example4c" class="form-control" required minlength="6"/>
-                        <label class="form-label" for="form3Example4c">Password</label>
+                        <input name="password" type="password" placeholder="Password / minlength 8" class="form-control" formControlName="password" [ngClass]="{'is-invalid': userForm.get('password').errors && userForm.get('password').touched}"/>
                       </div>
                     </div>
-  
-                    <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="alert alert-danger" *ngIf="userForm.get('password').errors?.['required'] && userForm.get('password').touched">
+                      Password is required
+                    </div>  
+                    <div class="alert alert-danger" *ngIf="userForm.get('password').errors?.['minLength'] && userForm.get('password').touched">
+                      Password must gave minimum length of 8 
+                    </div>    
+                    
+                    <div class="d-flex flex-row align-items-center mb-3">
                       <div class="form-outline flex-fill mb-0">
-                        <input ngModel #passwordConfirm="ngModel" name="passwordConfirm" type="password" id="form3Example4cd" class="form-control" required/>
-                        <label class="form-label" for="form3Example4cd">Repeat your password</label>
+                        <input name="passwordConfirm" type="password" placeholder="Repeat your password" class="form-control" formControlName="confirmPassword" [ngClass]="{'is-invalid': userForm.get('confirmPassword').errors && userForm.get('confirmPassword').touched}"/>
                       </div>
+                    </div> 
+                    <div class="alert alert-danger" *ngIf="userForm.get('confirmPassword').hasError('passwordMismatch')">
+                      Password Don't Match
                     </div>
-                    <div class="alert alert-danger" *ngIf="password.value != passwordConfirm.value && passwordConfirm.touched">Doesn't Match</div>
+                                                     
 
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                      <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                      <button type="submit" class="btn btn-primary btn-lg" [disabled]="!userForm.valid">Register</button>
                     </div>
-            
+
                   </form>
+                  
                   <br>
                   <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
                 </div>

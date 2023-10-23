@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { TaskService } from 'src/app/services/task.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { TaskService } from 'src/app/services/task.service';
   styleUrls: ['./add-task.component.css']
 })
 export class AddTaskComponent {
-  constructor(private ts: TaskService){}
+  constructor(private ts: TaskService, private fb: FormBuilder){}
 
   @ViewChild('modal') modal: ElementRef
   @Output() onModalClose = new EventEmitter<boolean>();
@@ -18,10 +18,21 @@ export class AddTaskComponent {
     this.onModalClose.emit(false)
   }
 
-  addTask(data: NgForm){
+  addTask(data){
     this.ts.addTask(data.value.title, data.value.priority, data.value.notes)
     .then( () => {
+      this.addTaskForm.reset()
       this.closeModal();
     })
   }
+
+  addTaskForm = this.fb.group({
+    title: ['', Validators.compose([
+      Validators.required,
+      Validators.maxLength(20)
+    ])],
+    priority: ['', Validators.required],
+    notes: ['', Validators.maxLength(30)]
+  })
+
 }

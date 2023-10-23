@@ -5,39 +5,39 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Modal Heading</h4>
+                <h4 class="modal-title">Add New Task</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"></button>
             </div>
 
             <!-- Modal body -->
-            <form #f="ngForm" (ngSubmit)="addTask(f)">
+            <form [formGroup]="addTaskForm" (ngSubmit)="addTask(addTaskForm)">
                 <div class="modal-body">
                     
-                    <input ngModel type="text" #name="ngModel" name="title" class="form-control" placeholder="Task Title" required>
+                    <input type="text" class="form-control" placeholder="Task Title" formControlName="title">
 
                     <div class="text-center m-3">
-                        <span>Priority:</span>
+                        <div class="m-1 border-bottom">Priority:</div>
                         <div class="form-check form-check-inline">
-                            <input ngModel #name="ngModel" name="priority" value="High" class="form-check-input" type="radio" id="inlineRadio1">
+                            <input name="priority" [value]="'High'" class="form-check-input" type="radio" id="inlineRadio1" formControlName="priority" />
                             <label class="form-check-label" for="inlineRadio1">High</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input ngModel #name="ngModel" name="priority" value="Medium" class="form-check-input" type="radio" id="inlineRadio2">
+                            <input name="priority" [value]="'Medium'" class="form-check-input" type="radio" id="inlineRadio2" formControlName="priority" />
                             <label class="form-check-label" for="inlineRadio2">Medium</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input ngModel #name="ngModel" name="priority" value="Low" class="form-check-input" type="radio" id="inlineRadio3">
+                            <input name="priority" [value]="'Low'" class="form-check-input" type="radio" id="inlineRadio3" formControlName="priority" />
                             <label class="form-check-label" for="inlineRadio3">Low</label>
                         </div>
                     </div>
 
-                    <input ngModel type="text" #name="ngModel" name="notes" class="form-control" placeholder="Notes" required>
+                    <input name="notes" class="form-control text-wrap" placeholder="Notes" formControlName="notes">
 
                 </div>
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button class="btn btn-success" data-bs-dismiss="modal">Add Task</button>
+                    <button type="submit" class="btn btn-success" data-bs-dismiss="modal" [disabled]="!addTaskForm.valid">Add Task</button>
                 </div>
             </form>
         </div>
