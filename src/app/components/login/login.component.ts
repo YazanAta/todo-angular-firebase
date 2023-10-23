@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
@@ -10,7 +10,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent {
 
-  constructor(private as: AuthService, private router: Router, private us: UserService){}
+  constructor(private as: AuthService, private router: Router, private us: UserService, private renderer: Renderer2){}
+
+  errorMessage: string
+  @ViewChild('modalTrigger', { static: true }) modalTrigger: ElementRef;
 
   login(form){
     let data = form.value
@@ -19,10 +22,16 @@ export class LoginComponent {
       if(result.user.emailVerified == true){
         this.router.navigate(['/'])
       }else{
-        this.router.navigate(['/'])
+        this.as.logout().then(() => {
+          alert("Please verify your email")
+          this.router.navigate(['/'])
+        })
       }
     })
-    .catch(err => alert("Username Or Password isn't correct"))
+    .catch(err => {
+      this.errorMessage = err
+      this.renderer.selectRootElement(this.modalTrigger.nativeElement).click()
+    })
   }
 
   loginWithGoogle(){
@@ -35,6 +44,12 @@ export class LoginComponent {
     .catch((error) => {
       console.log(error);
     });
+  }
+
+  recoverPassword(form){
+    this.as.recoverPassword(form.value.email).subscribe(() => {
+      console.log("Success");
+    })
   }
 
 }

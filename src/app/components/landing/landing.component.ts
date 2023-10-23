@@ -17,6 +17,8 @@ export class LandingComponent implements OnInit{
 
   ngOnInit(): void {
     this.as.user.subscribe((res)=> {
+      console.log(res);
+      
       this.username = res?.displayName;
     })
   }

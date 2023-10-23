@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -11,13 +11,18 @@ export class ForgetPasswordComponent {
 
   constructor(private as: AuthService, private router: Router){}
 
-  email: string ='';
+  @ViewChild('email', { static: true }) email: ElementRef;
+  sending: boolean = false
 
   getLink(){
-    this.as.forgetPassword(this.email)
-    .then(() => {this.router.navigate['/verify-email']}),
-    err => {alert("Something went wrong")}
-    this.email = '';
+    this.sending = true;
+    this.as.recoverPassword(this.email.nativeElement.value).subscribe(() => {
+      this.sending = false;
+      alert("Email Has Sent")
+    }, err => {
+      this.sending = false;
+      alert(err)
+    })
   }
 
 }

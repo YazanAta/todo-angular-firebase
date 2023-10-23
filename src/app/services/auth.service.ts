@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 import { GoogleAuthProvider } from 'firebase/auth'
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -28,10 +28,6 @@ export class AuthService {
     return this.afAuth.signOut()
   }
 
-  forgetPassword(email : string){
-    return this.afAuth.sendPasswordResetEmail(email)
-  }
-
   GoogleAuth() {
     return this.AuthLogin(new GoogleAuthProvider());
   }
@@ -47,7 +43,7 @@ export class AuthService {
     })
   }
 
-  sendEmailForVerifications(user){
-    return user.sendEmailForVerifications();
+  recoverPassword(email: string): Observable<void>{
+    return from(this.afAuth.sendPasswordResetEmail(email));
   }
 }

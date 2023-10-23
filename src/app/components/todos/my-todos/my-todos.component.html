@@ -6,7 +6,7 @@
             <div class="card-header p-3">
                 <h5 class="mb-0"><i class="fas fa-tasks me-2"></i>Task List</h5>
             </div>
-            <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative">
+            <div class="card-body c-body" data-mdb-perfect-scrollbar="true">
 
                 <table class="table mb-0">
                 <thead>
@@ -20,16 +20,16 @@
                 <tbody>
                     <tr class="fw-normal" *ngFor="let todo of todos; index as i">
                     <td class="align-middle" [class.text-decoration-line-through]="todo.isDone">
-                        <span>{{todo.title}}</span>
+                        <span class="wrap">{{todo.title}}</span>
                     </td>
                     <td class="align-middle">
                         <h6 class="mb-0"><span [ngClass]="getColorClass(todo.priority)">{{todo.priority | titlecase}}</span></h6>
                     </td>
                     <td class="align-middle">
-                        <span>{{todo.notes}}</span>
+                        <span class="wrap">{{todo.notes}}</span>
                     </td>
                     <td class="align-middle">
-                        <span role="button"  data-mdb-toggle="tooltip" title="Done" (click)="isDoneChange(i)"><fa-icon [icon]="todo.isDone ? faCheck : faXmark" class="text-success me-3"></fa-icon></span>
+                        <span role="button"  data-mdb-toggle="tooltip" title="Done" (click)="isDoneChange(i)"><fa-icon [icon]="todo.isDone ? faXmark : faCheck" class="text-success me-3"></fa-icon></span>
                         <span role="button" data-mdb-toggle="tooltip" title="Remove" (click)="delete(i)"><fa-icon [icon]="faTrash" class="text-danger"></fa-icon></span>
                     </td>
                     </tr>

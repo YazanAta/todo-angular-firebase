@@ -1,6 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { faL, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { Task } from 'src/app/interfaces/task.interface';
@@ -45,7 +44,6 @@ export class MyTodosComponent implements OnInit{
   }
 
   closeModal(){
-    this.childComponent.closeModal()
     this.isModalOpen = false
   }
 

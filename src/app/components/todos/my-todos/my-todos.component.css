@@ -11,4 +11,11 @@
     justify-content: center;
     cursor: pointer; /* Add a pointer cursor to indicate it's clickable */
 }
+
+.c-body{
+    position: relative;
+    overflow:auto;
+}
+
+
   

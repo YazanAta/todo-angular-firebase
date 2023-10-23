@@ -32,7 +32,7 @@ export class NavComponent {
 
   logout(){
     this.as.logout().then(() => {
-      console.log("out")
+      location.reload();
     })
   }
 }

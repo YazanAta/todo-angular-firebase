@@ -1,7 +1,7 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" routerLink="/">
-            <img src="assets/logo.jpeg" alt="" width="40" height="40">
+            <img src="assets/logo.jpeg" class="logo" alt="" width="40" height="40">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
         aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavBar()">
@@ -15,9 +15,6 @@
             </li>
             <li class="nav-item" *ngIf="isUser">
             <a class="nav-link" routerLink="my-todos">My Todos</a>
-            </li>
-            <li class="nav-item" *ngIf="isUser">
-            <a class="nav-link" routerLink="profile">Profile</a>
             </li>
             <li class="nav-item" *ngIf="!isUser">
             <a class="nav-link" routerLink="login">Login</a>
