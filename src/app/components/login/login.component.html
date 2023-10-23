@@ -6,7 +6,7 @@
     <img src="../../../assets/login.png" class="l-image" alt="">
   </div>
   <div class="container col-12 col-md-6">
-    <form #f="ngForm" class="m-auto p-5" autocomplete="off">
+    <form #f="ngForm" class="m-auto p-5" autocomplete="off"  (keydown.enter)="login(f)">
         <!-- Email input -->
         <div class="form-outline mb-4">
           <input ngModel #email="ngModel" type="email" name="email" id="form2Example1" class="form-control" required email />
@@ -24,7 +24,7 @@
         <div class="row mb-4">
           <div class="col d-flex justify-content-center">
                     <!-- Submit button -->
-            <button type="button" class="btn btn-success btn-block mb-3" (click)="login(f)">Sign in</button>
+            <button type="submit" class="btn btn-success btn-block mb-3" (click)="login(f)">Sign in</button>
           </div>
         </div>
       
@@ -34,7 +34,7 @@
           <p>or sign up with:</p>
       
           <div style="background-color: orange; color: beige;">
-            <button (click)="loginWithGoogle()" class="btn btn-floating mx-1">
+            <button type="button" (click)="loginWithGoogle()" class="btn btn-floating mx-1">
               <img src="../../../assets/google.svg" alt=""> <span class="m-2 text-white">Login With Google</span>
             </button>
           </div>
