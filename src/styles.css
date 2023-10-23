@@ -4,3 +4,13 @@
     src: url('assets/fonts/TiltNeon-Regular.ttf');
   }
   
+  .container{
+    position: relative;
+  }
+
+.router-container >*{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}

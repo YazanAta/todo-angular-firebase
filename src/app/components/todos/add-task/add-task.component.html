@@ -13,7 +13,7 @@
             <form [formGroup]="addTaskForm" (ngSubmit)="addTask(addTaskForm)">
                 <div class="modal-body">
                     
-                    <input type="text" class="form-control" placeholder="Task Title" formControlName="title">
+                    <input type="text" class="form-control" placeholder="Task Title" formControlName="title" maxlength="20">
 
                     <div class="text-center m-3">
                         <div class="m-1 border-bottom">Priority:</div>
@@ -31,7 +31,7 @@
                         </div>
                     </div>
 
-                    <input name="notes" class="form-control text-wrap" placeholder="Notes" formControlName="notes">
+                    <input name="notes" class="form-control text-wrap" placeholder="Notes" formControlName="notes" maxlength="30">
 
                 </div>
 

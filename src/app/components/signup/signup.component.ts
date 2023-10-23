@@ -42,8 +42,6 @@ export class SignupComponent {
   errorMessage: string ;
 
   signup(form){
-    console.log(form.value);
-    
     let data: User = form.value;
     this.as.signup(data.email, data.password)
     .then(result => {

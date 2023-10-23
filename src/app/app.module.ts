@@ -20,6 +20,7 @@ import { MyTodosComponent } from './components/todos/my-todos/my-todos.component
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddTaskComponent } from './components/todos/add-task/add-task.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ForgetPasswordComponent } from './components/forget-password/forget-pas
     AngularFirestoreModule,
     AngularFireAuthModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
