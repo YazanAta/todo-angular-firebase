@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { Task } from 'src/app/interfaces/task.interface';
 import { TaskService } from 'src/app/services/task.service';
 import { AddTaskComponent } from '../add-task/add-task.component';
@@ -19,6 +20,7 @@ export class MyTodosComponent implements OnInit{
   faTrash = faTrash;
   faCheck = faCheck;
   faXmark = faXmark;
+  faEdit = faEdit;
   //-----------
 
   isModalOpen : boolean = false;
@@ -67,5 +69,23 @@ export class MyTodosComponent implements OnInit{
   isDoneChange(index){
     this.ts.isDoneChange(this.todos[index].id, !this.todos[index].isDone)
   }
+
+
+  //Filtering
+  //------------------//
+  private customPrioritySort(a: Task, b: Task): number {
+    const priorityOrder = { 'Low': 1, 'Medium': 2, 'High': 3 };
+    return priorityOrder[a.priority] - priorityOrder[b.priority];
+  }
+
+  sortAscending() {
+    this.todos.sort(this.customPrioritySort);
+  }
+
+  // Method to sort the todos array by priority in descending order
+  sortDescending() {
+    this.todos.sort((a, b) => this.customPrioritySort(b, a));
+  }
+  //-----------------//
 
 }

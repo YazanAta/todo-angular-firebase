@@ -3,8 +3,17 @@
         <div class="row d-flex justify-content-center align-items-center">
         <div class="col-md-12 col-xl-10">
             <div class="card">
-            <div class="card-header p-3">
-                <h5 class="mb-0"><i class="fas fa-tasks me-2"></i>Task List</h5>
+            <div class="card-header p-3 d-flex justify-content-between">
+                <h5 class="mb-0 d-inline-block"><i class="fas fa-tasks me-2"></i>Task List</h5>
+                <div class="dropdown d-inline-block">
+                    <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      Sort By Priority
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><button class="dropdown-item" (click)="sortDescending()">(High to Low)</button></li>
+                      <li><button class="dropdown-item" (click)="sortAscending()">(Low to High)</button></li>
+                    </ul>
+                </div>
             </div>
             <div class="card-body c-body" data-mdb-perfect-scrollbar="true">
 
@@ -30,12 +39,11 @@
                     </td>
                     <td class="align-middle">
                         <span role="button"  data-mdb-toggle="tooltip" title="Done" (click)="isDoneChange(i)"><fa-icon [icon]="todo.isDone ? faXmark : faCheck" class="text-success me-3"></fa-icon></span>
-                        <span role="button" data-mdb-toggle="tooltip" title="Remove" (click)="delete(i)"><fa-icon [icon]="faTrash" class="text-danger"></fa-icon></span>
+                        <span role="button" data-mdb-toggle="tooltip" title="Remove" (click)="delete(i)"><fa-icon [icon]="faTrash" class="text-danger me-3"></fa-icon></span>
                     </td>
                     </tr>
                 </tbody>
                 </table>
-
             </div>
             <div class="card-footer text-end p-3">
                 <button class="btn btn-primary" (click)="openModal()">Add Task</button>
