@@ -1,7 +1,7 @@
 
             <!-- <div class="alert alert-danger" *ngIf="email.touched && email.errors?.required">Email is Required</div>
             <div class="alert alert-danger" *ngIf="email.touched && email.errors?.email">email format error</div>-->
-<div class="container row m-auto mt-4">
+<div class="container row" *ngIf="showPage">
   <div class="col-12 col-md-6">
     <img src="../../../assets/login.png" class="l-image" alt="">
   </div>
@@ -33,7 +33,7 @@
           <p>Not a member? <a routerLink="/signup">Register</a></p>
           <p>or sign up with:</p>
       
-          <div style="background-color: orange; color: beige;">
+          <div style="background-color: orange; color: beige; border-radius: 10px;">
             <button type="button" (click)="loginWithGoogle()" class="btn btn-floating mx-1">
               <img src="../../../assets/google.svg" alt=""> <span class="m-2 text-white">Login With Google</span>
             </button>
@@ -68,3 +68,4 @@
 
   </div>
 </div>
+<ngx-skeleton-loader appearance="line" *ngIf="loader" count = "{{totalCount}}"></ngx-skeleton-loader>

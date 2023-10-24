@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
@@ -8,12 +8,23 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   constructor(private as: AuthService, private router: Router, private us: UserService, private renderer: Renderer2){}
 
+  loader = true
+  showPage = false
+  totalCount = 20
+
   errorMessage: string
   @ViewChild('modalTrigger', { static: true }) modalTrigger: ElementRef;
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.loader = false
+      this.showPage = true
+    }, 1000)
+  }
 
   login(form){
     let data = form.value
